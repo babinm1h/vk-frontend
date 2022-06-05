@@ -31,7 +31,7 @@ body {
   width: 100%;
   font-size: 100%;
   line-height: 1;
-  font-size: 14px;
+  font-size: 16px;
   -ms-text-size-adjust: 100%;
   -moz-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
@@ -109,5 +109,13 @@ body{
 
 .blueBtn{
   @apply bg-primaryBlue text-white px-5 rounded-lg h-8 flex items-center justify-center hover:bg-opacity-90 transition-all active:scale-[.98]
+}
+
+.authBlock{
+  @apply border border-gray-300 rounded-lg p-7 flex w-[600px] bg-white items-center
+}
+
+.postAction{
+  @apply cursor-pointer px-2 py-1 bg-gray-100 rounded-full transition-colors hover:bg-gray-200 flex items-center gap-1 text-gray-500
 }
 }
