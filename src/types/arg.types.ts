@@ -10,3 +10,12 @@ export interface ILoginArgs {
     email: string
     password: string
 }
+
+
+export interface IEditUserArgs {
+    name: string
+    city: string
+    avatar: string
+    birthDate: string
+    gender: string
+}

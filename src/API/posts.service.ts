@@ -13,18 +13,20 @@ export class PostsService {
     }
 
 
-    static async delete() {
+    static async delete(postId: string) {
         try {
-
+            const { data } = await $authInstance.delete(`/posts/${postId}`)
+            return data
         } catch (err: any) {
             throw Error(err.response?.data?.message)
         }
     }
 
 
-    static async change() {
+    static async editPost(postId: string, text: string) {
         try {
-
+            const { data } = await $authInstance.put(`/posts/edit/${postId}`, { text })
+            return data
         } catch (err: any) {
             throw Error(err.response?.data?.message)
         }
@@ -39,5 +41,14 @@ export class PostsService {
             throw Error(err.response?.data?.message)
         }
     }
-    
+
+
+    static async like(postId: string) {
+        try {
+            const { data } = await $authInstance.put(`/posts/like/${postId}`)
+            return data
+        } catch (err: any) {
+            throw Error(err.response?.data?.message)
+        }
+    }
 }
