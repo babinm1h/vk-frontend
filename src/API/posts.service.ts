@@ -3,9 +3,9 @@ import { $authInstance, $instance } from "."
 
 export class PostsService {
 
-    static async create(text: string) {
+    static async create(formData: FormData) {
         try {
-            const { data } = await $authInstance.post('/posts', { text })
+            const { data } = await $authInstance.post('/posts', formData)
             return data
         } catch (err: any) {
             throw Error(err.response?.data?.message)

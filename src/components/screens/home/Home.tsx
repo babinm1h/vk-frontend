@@ -28,7 +28,7 @@ const Home = () => {
             <div className="grid grid-cols-3 w-full">
                 <div className="col-span-2 mx-5 flex flex-col gap-5">
                     <AddPost refetch={refetch} />
-                    <ul className="flex flex-col gap-5">
+                    <ul className="flex flex-col gap-5 pb-5">
                         {data && data.map(i => <Post key={i._id} item={i} />)}
                     </ul>
                 </div>
