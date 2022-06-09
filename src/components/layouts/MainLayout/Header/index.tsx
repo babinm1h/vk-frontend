@@ -1,12 +1,13 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import React, { useRef, useState } from 'react';
-import { ChevronDownIcon, SearchIcon } from '../../../../../public/icons';
+import React from 'react';
+import { ChevronDownIcon } from '../../../../../public/icons';
 import logo from "../../../../../public/logo.png"
 import { removeTokenCookie } from '../../../../../utils/auth.helper';
 import { useAuth } from '../../../../hooks/useAuth';
 import { useOutsideClick } from '../../../../hooks/useOutsideClick';
+import SearchBlock from './SearchBlock';
 import UserDropdown from './UserDropdown';
 
 const Header = () => {
@@ -35,13 +36,7 @@ const Header = () => {
                 </div>
 
                 <div className="flex-grow flex">
-                    <div className="bg-gray-200 self-start flex items-center py-1 px-3 rounded-lg gap-2">
-                        <label htmlFor="search" className="">
-                            <SearchIcon className='w-5 h-5 text-gray-500' />
-                        </label>
-                        <input type="text" id="search"
-                            className="border-none border bg-transparent" placeholder='Поиск' />
-                    </div>
+                    <SearchBlock />
                 </div>
 
                 {user

@@ -2,7 +2,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React, { FC } from 'react';
 import { useQuery } from 'react-query';
-import { ChatIcon, HeartIcon } from '../../../public/icons';
 import { getCreationDate } from '../../../utils/time';
 import { CommentsService } from '../../API/comments.service';
 import { useAuth } from '../../hooks/useAuth';
@@ -11,12 +10,14 @@ import AddCommentForm from '../UI/forms/AddCommentForm';
 import Comment from './Comment';
 import CommentsList from './CommentsList';
 import PostActions from './PostActions';
+import PostDots from './PostDots';
 
 interface IPostProps {
     item: IPost
+    refetchPosts: Function
 }
 
-const Post: FC<IPostProps> = ({ item }) => {
+const Post: FC<IPostProps> = ({ item, refetchPosts }) => {
     const { user } = useAuth()
 
     const { refetch: refetchComments, isLoading, data } = useQuery(['fetch first comments', item._id],
@@ -49,7 +50,7 @@ const Post: FC<IPostProps> = ({ item }) => {
                     <Image src={item.user.avatar} alt="author" layout='fill' objectFit='cover'
                         className='rounded-[50%]' />
                 </div>
-                <div className="flex flex-col">
+                <div className="flex flex-col flex-grow">
                     <Link href={`/profile/${item.user._id}`}>
                         <a className="text-primaryBlue hover:underline font-semibold">
                             {item.user.name}
@@ -57,6 +58,7 @@ const Post: FC<IPostProps> = ({ item }) => {
                     </Link>
                     <span className="text-gray-400">{getCreationDate(item.createdAt)}</span>
                 </div>
+                {item.user._id === user?._id && <PostDots postId={item._id} refetchPosts={refetchPosts} />}
             </div>
 
             <div className="py-2 px-5">

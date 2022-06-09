@@ -1,4 +1,5 @@
 import { $authInstance, $instance } from "."
+import { IPost } from "../types/post.types"
 
 
 export class PostsService {
@@ -46,6 +47,16 @@ export class PostsService {
     static async like(postId: string) {
         try {
             const { data } = await $authInstance.put(`/posts/like/${postId}`)
+            return data
+        } catch (err: any) {
+            throw Error(err.response?.data?.message)
+        }
+    }
+
+
+    static async search(searchQuery: string): Promise<IPost[]> {
+        try {
+            const { data } = await $instance.get("/posts/search", { params: { searchQuery } })
             return data
         } catch (err: any) {
             throw Error(err.response?.data?.message)

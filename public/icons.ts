@@ -3,7 +3,7 @@ import {
     ChevronDownIcon, LogoutIcon, HeartIcon
 } from "@heroicons/react/outline"
 
-import { HeartIcon as HearthFilled, PaperAirplaneIcon as SendIcon, XIcon } from "@heroicons/react/solid"
+import { HeartIcon as HearthFilled, PaperAirplaneIcon as SendIcon, XIcon, DotsHorizontalIcon as DotsHorizontal } from "@heroicons/react/solid"
 
 
 export {
@@ -17,5 +17,6 @@ export {
     HeartIcon,
     HearthFilled,
     XIcon,
-    SendIcon
+    SendIcon,
+    DotsHorizontal
 }

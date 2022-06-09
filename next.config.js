@@ -6,7 +6,7 @@ const nextConfig = {
     SERVER_URL: process.env.SERVER_URL
   },
   images: {
-    domains: ['vk.com', 'res.cloudinary.com'],
+    domains: ['vk.com', 'res.cloudinary.com', 'lh3.googleusercontent.com'],
   },
 }
 
