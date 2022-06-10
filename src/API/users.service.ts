@@ -25,9 +25,9 @@ export class UsersService {
     }
 
 
-    static async editUser(args: IEditUserArgs): Promise<IUser> {
+    static async editUser(formData: FormData): Promise<IUser> {
         try {
-            const { data } = await $authInstance.put('/user/edit', args)
+            const { data } = await $authInstance.put('/user/edit', formData)
             return data
         } catch (err: any) {
             throw Error(err.response?.data?.message)

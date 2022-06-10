@@ -13,7 +13,7 @@ const Sidebar = () => {
     return (
         <div className="w-48">
             {user
-                ? <NavLinks />
+                ? <NavLinks userId={user._id} />
 
                 : <>
                     <div className='flex flex-col gap-3 border-b border-gray-300 pb-6' >

@@ -10,7 +10,8 @@ const initialState: IState = {
     logError: "",
     user: null,
     isSubmitting: false,
-    isInitializing: true
+    isInitializing: true,
+    refetchAuth: () => { }
 }
 
 
@@ -141,7 +142,7 @@ export const AuthProvider: FC<PropsWithChildren<unknown>> = ({ children }) => {
     )
 
 
-    return <AuthContext.Provider value={{ ...state, ...actionCreators }}>
+    return <AuthContext.Provider value={{ ...state, ...actionCreators, refetchAuth: refetch }}>
         {children}
     </AuthContext.Provider>
 }

@@ -8,7 +8,7 @@ import { validate } from '../../../../utils/validate';
 import { AuthService, IAuthResponse } from '../../../API/auth.service';
 import { useAuth } from '../../../hooks/useAuth';
 import { ILoginArgs } from '../../../types/arg.types';
-import FormControl from './FormControl';
+import FormControl from './controls/FormControl';
 
 
 interface IForm {

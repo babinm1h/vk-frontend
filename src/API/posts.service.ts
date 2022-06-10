@@ -44,6 +44,16 @@ export class PostsService {
     }
 
 
+    static async getByUser(userId: string): Promise<IPost[]> {
+        try {
+            const { data } = await $instance.get(`/posts/for/profile/${userId}`)
+            return data
+        } catch (err: any) {
+            throw Error(err.response?.data?.message)
+        }
+    }
+
+
     static async like(postId: string) {
         try {
             const { data } = await $authInstance.put(`/posts/like/${postId}`)

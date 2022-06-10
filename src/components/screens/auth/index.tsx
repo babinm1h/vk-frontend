@@ -25,7 +25,7 @@ const Auth = () => {
             <div className="w-full h-full flex items-center justify-center text-xs">
                 <div className="authBlock">
 
-                    <div className="flex-1">
+                    {/* <div className="flex-1">
                         <button className="flex gap-2 items-center px-5 py-2 shadow-blackSm transition-all hover:bg-gray-200 active:scale-[.98] text-[16px]"
                             onClick={onGoogleClick}>
                             <span className="w-6 h-6 relative">
@@ -36,7 +36,7 @@ const Auth = () => {
                                 Вход через Google
                             </span>
                         </button>
-                    </div>
+                    </div> */}
 
 
                     <div className="flex-1 flex flex-col gap-5">

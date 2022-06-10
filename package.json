@@ -16,14 +16,18 @@
     "moment": "^2.29.3",
     "next": "12.1.6",
     "react": "18.1.0",
+    "react-datepicker": "^4.8.0",
     "react-dom": "18.1.0",
     "react-hook-form": "^7.31.3",
-    "react-query": "^3.39.1"
+    "react-query": "^3.39.1",
+    "react-select-country-list": "^2.2.3"
   },
   "devDependencies": {
     "@types/node": "17.0.36",
     "@types/react": "18.0.9",
+    "@types/react-datepicker": "^4.4.2",
     "@types/react-dom": "18.0.5",
+    "@types/react-select-country-list": "^2.2.0",
     "autoprefixer": "^10.4.7",
     "eslint": "8.16.0",
     "eslint-config-next": "12.1.6",

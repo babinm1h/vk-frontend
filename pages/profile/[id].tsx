@@ -1,11 +1,9 @@
+import { NextPage } from 'next';
 import React from 'react';
+import Profile from '../../src/components/screens/profile';
 
-const Profile = () => {
-    return (
-        <div>
-            pr
-        </div>
-    );
+const profile: NextPage = () => {
+    return <Profile />
 };
 
-export default Profile;
+export default profile;

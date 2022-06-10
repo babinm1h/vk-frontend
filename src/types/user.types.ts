@@ -7,8 +7,8 @@ export interface IUser {
     city: string
     isVerified: boolean
     avatar: string
-    followers: string[] | IUser[]
-    follows: string[]
+    followers: IUser[]
+    follows: IUser[]
     gender: "male" | 'female'
     birthDate: string
     password: string

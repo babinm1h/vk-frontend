@@ -23,6 +23,7 @@ export interface IState {
     isSubmitting: boolean
     logError: string
     regError: string
+    refetchAuth: Function
 }
 
 

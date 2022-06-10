@@ -100,7 +100,7 @@ body{
   }
 
   .navItem{
-    @apply flex items-center gap-2 hover:bg-gray-200 cursor-pointer transition-colors p-2 rounded-md
+    @apply flex items-center gap-2 hover:bg-gray-200 cursor-pointer transition-colors p-2 rounded-md whitespace-nowrap
   }
   
 .whiteBlock{
@@ -117,5 +117,17 @@ body{
 
 .postAction{
   @apply cursor-pointer px-2 py-1 bg-gray-100 rounded-full transition-colors hover:bg-gray-200 flex items-center gap-1 text-gray-500
+}
+
+.profileCount{
+  @apply flex flex-col items-center font-semibold
+}
+
+.editControl{
+  @apply  border border-gray-300 py-[6px] px-2 rounded-md w-full
+}
+
+.editLabel{
+  @apply text-gray-600 whitespace-nowrap w-[150px] flex justify-end
 }
 }
