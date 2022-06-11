@@ -1,42 +1,57 @@
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import React from 'react';
-import { useQuery } from 'react-query';
+import { useMutation, useQuery } from 'react-query';
 import { PostsService } from '../../../API/posts.service';
 import { UsersService } from '../../../API/users.service';
 import { useAuth } from '../../../hooks/useAuth';
+import { useProfile } from '../../../hooks/useProfile';
 import CircleUser from '../../CircleUser';
 import MainLayout from '../../layouts/MainLayout/MainLayout';
 import Posts from '../../Post/Posts';
 import AddPost from '../../UI/forms/AddPost';
 import ProfileInfo from './ProfileInfo';
+import UsersBlock from '../../UsersBlock';
+import Loader from '../../Loader';
+import { DialogsService } from '../../../API/dialogs.service';
 
 const Profile = () => {
     const { user } = useAuth()
     const { query, push } = useRouter()
 
+    const { IsPostsLoading, data, refetch, userPosts, isLoading, refetchPosts } = useProfile(query.id as string)
 
-    const { data: userPosts, refetch } = useQuery(['fetch user posts', query.id],
-        async () => await PostsService.getByUser(query.id as string),
+    const { mutate: followMutate, isLoading: isFollowing } = useMutation(['follow', query.id],
+        async () => await UsersService.toggleFollow(query.id as string),
         {
-            enabled: !!query.id,
-            select: data => data
+            onSuccess() {
+                refetch()
+            }
         }
     )
 
-
-    const { data, isLoading } = useQuery(['fetch profile', query.id],
-        async () => await UsersService.getProfile(String(query.id)),
+    const { mutate: dialogMutate, } = useMutation(['create dialog', query.id],
+        async () => await DialogsService.create(query.id as string),
         {
-            enabled: !!query.id,
-            select: data => data
+            onSuccess: (data) => {
+                push(`/dialogs/${data._id}`)
+            }
         }
     )
 
-    if (isLoading) {
-        return <div>load</div>
+    const onToggleFollow = () => {
+        followMutate()
     }
 
+    const isInFollows = data?.followers.some(u => u._id === user?._id)
+
+    const handleDialog = () => {
+        dialogMutate()
+    }
+
+    if (isLoading) {
+        return <div className='w-full h-full text-center mt-10'><Loader /></div>
+    }
 
     return (
         <MainLayout>
@@ -55,41 +70,38 @@ const Profile = () => {
                                     Редактировать
                                 </button>
                                 : <>
-                                    <button className='blueBtn mb-3'>Подписаться</button>
-                                    <button className='blueBtn'>Написать сообщение</button>
+                                    {isInFollows
+                                        ? <button className='blueBtn bg-gray-300 text-gray-600 mb-3'
+                                            onClick={onToggleFollow} disabled={isFollowing}>
+                                            Отписаться
+                                        </button>
+                                        : <button className='blueBtn mb-3' onClick={onToggleFollow}
+                                            disabled={isFollowing}>
+                                            Подписаться
+                                        </button>}
+                                    <button className='blueBtn' onClick={handleDialog}>
+                                        Написать сообщение
+                                    </button>
                                 </>}
                         </div>
                     </div>
 
-                    {data && data.followers.length > 0 && <div className="whiteBlock p-5">
-                        <div className="flex gap-2">
-                            <span className="">Подписчики</span>
-                            <span className="text-gray-400 font-semibold">{data?.followers.length}</span>
-                        </div>
-                        <ul className="flex flex-wrap gap-3">
-                            {data.followers.map(u => <CircleUser user={u} key={u._id} />)}
-                        </ul>
-                    </div>}
+                    {data && data.followers.length > 0 && <UsersBlock users={data.followers}
+                        title="Подписчики" />}
 
-
-                    {data && data.follows.length > 0 && <div className="whiteBlock p-5">
-                        <div className="flex gap-2">
-                            <span className="">Подписки</span>
-                            <span className="text-gray-400 font-semibold">{data?.follows.length}</span>
-                        </div>
-                        <ul className="flex flex-wrap gap-3 mt-3">
-                            {data.follows.map(u => <CircleUser user={u} key={u._id} />)}
-                        </ul>
-                    </div>}
+                    {data && data.follows.length > 0 && <UsersBlock title="Подписки" users={data.follows} />}
                 </div>
 
 
                 <div className="flex flex-col gap-5 w-full self-start">
                     {data && <ProfileInfo profile={data} />}
 
-                    {user && user._id === query.id && <AddPost refetch={refetch} />}
+                    {user && user._id === query.id && <AddPost refetch={refetchPosts} />}
 
-                    {userPosts && userPosts.length > 0 && <Posts data={userPosts} refetch={refetch} />}
+                    {IsPostsLoading
+                        ? <Loader />
+                        : userPosts && userPosts.length > 0 && <Posts data={userPosts} refetch={refetch} />
+                    }
                 </div>
 
             </section>

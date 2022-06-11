@@ -12,13 +12,13 @@ const CircleUser: FC<{ user: IUser }> = ({ user }) => {
     }
 
     return (
-        <li className="flex flex-col items-center justify-center gap-1 group cursor-pointer"
+        <li className="flex flex-col items-center justify-center gap-1 group cursor-pointer mt-3"
             onClick={handleClick}>
             <div className="relative w-10 h-10">
                 <Image src={user.avatar} layout='fill'
                     className='rounded-[50%]' alt='user' objectFit='cover' />
             </div>
-            <span className="truncate w-16 text-ellipsis text-primaryBlue font-semibold group-hover:underline text-center">
+            <span className="truncate w-14 text-ellipsis text-primaryBlue font-semibold group-hover:underline text-center">
                 {user.name.split(" ")[0]}
             </span>
         </li>

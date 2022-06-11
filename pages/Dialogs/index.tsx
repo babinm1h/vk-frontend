@@ -1,11 +1,9 @@
+import { NextPage } from 'next';
 import React from 'react';
+import Dialogs from '../../src/components/screens/dialogs';
 
-const Dialogs = () => {
-    return (
-        <div>
-            d
-        </div>
-    );
+const dialogs: NextPage = () => {
+    return <Dialogs />
 };
 
-export default Dialogs;
+export default dialogs;

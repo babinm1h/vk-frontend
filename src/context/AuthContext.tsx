@@ -136,7 +136,6 @@ export const AuthProvider: FC<PropsWithChildren<unknown>> = ({ children }) => {
 
             onSuccess: (data) => {
                 actionCreators.getAuthFullfilled(data)
-                console.log(data);
             }
         }
     )

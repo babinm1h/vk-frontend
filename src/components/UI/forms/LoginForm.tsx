@@ -51,7 +51,7 @@ const LoginForm = () => {
             {logError && <div className='text-red-600 mb-2'>{logError}</div>}
 
             <div className="flex items-center gap-5">
-                <button className="blueBtn">Войти</button>
+                <button className="blueBtn" disabled={isLoading}>Войти</button>
                 <div className="flex gap-2">Нет аккаунта?
                     <Link href="/auth/register">
                         <span className="text-primaryBlue cursor-pointer">Зарегестрироваться</span>

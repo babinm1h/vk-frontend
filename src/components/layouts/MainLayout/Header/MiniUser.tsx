@@ -12,7 +12,7 @@ const MiniUser: FC<IMiniUserProps> = ({ user }) => {
     const { push } = useRouter()
 
     const onUserClick = () => {
-        push(`/${user._id}`)
+        push(`/profile/${user._id}`)
     }
 
     return (

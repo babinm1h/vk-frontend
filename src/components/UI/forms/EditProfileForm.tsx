@@ -12,6 +12,7 @@ import { useMutation } from 'react-query';
 import { UsersService } from '../../../API/users.service';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { errorCatch } from '../../../../utils/errorCatch';
 
 interface IForm {
     name: string
@@ -26,7 +27,7 @@ const EditProfileForm = () => {
 
     const options = useMemo(() => countryList().getData().map(c => c.label), [])
 
-    const { mutate, isLoading, error } = useMutation('edit profile',
+    const { mutate, isLoading, error, isSuccess } = useMutation('edit profile',
         async (fd: FormData) => await UsersService.editUser(fd),
         {
             onSuccess: () => {
@@ -60,10 +61,10 @@ const EditProfileForm = () => {
                     register={register("name", validate(2, 45))} type="text" />
 
                 <EditSelect options={['Мужчина', 'Женщина']} id='gender' label="Пол"
-                    error={errors.gender} register={register('gender')} />
+                    error={errors.gender} register={register('gender')} value={user.gender} />
 
                 <EditSelect options={options} id='country' label="Страна" error={errors.country}
-                    register={register("country")} />
+                    register={register("country")} value={user.country} />
 
                 <div className="flex items-center gap-3 mt-5">
                     <span className="editLabel">Дата рождения</span>
@@ -90,6 +91,12 @@ const EditProfileForm = () => {
                     <button type="submit" className='blueBtn' disabled={isLoading}>
                         Сохранить
                     </button>
+                    {!!error && <div className="py-2 px-2 bg-red-300 rounded-lg mt-2">
+                        {errorCatch(error)}
+                    </div>}
+                    {isSuccess && <div className="py-1 px-2 bg-green-200 rounded-lg mt-3">
+                        Профиль обновлен
+                    </div>}
                 </div>
             </form>
         </div>

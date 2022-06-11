@@ -6,6 +6,7 @@ import { getCreationDate } from '../../../utils/time';
 import { CommentsService } from '../../API/comments.service';
 import { useAuth } from '../../hooks/useAuth';
 import { IPost } from '../../types/post.types';
+import Loader from '../Loader';
 import AddCommentForm from '../UI/forms/AddCommentForm';
 import Comment from './Comment';
 import CommentsList from './CommentsList';
@@ -72,7 +73,7 @@ const Post: FC<IPostProps> = ({ item, refetchPosts }) => {
                 commentsCount={data?.count || 0} />
 
             {isLoading
-                ? <div>load</div>
+                ? <Loader />
 
                 : allComments?.comments && allComments.count > 0
                     ? <div className="px-5 py-3">
@@ -90,7 +91,7 @@ const Post: FC<IPostProps> = ({ item, refetchPosts }) => {
                             </button>}
                     </div>}
 
-            <AddCommentForm postId={item._id} refetchAllComments={refetchAllComments} />
+            {user && <AddCommentForm postId={item._id} refetchAllComments={refetchAllComments} />}
         </div>
     );
 };

@@ -22,15 +22,19 @@ const SearchBlock = () => {
         setSearchQuery(e.target.value)
     }
 
+    const handleFocus = () => {
+        setIsVisible(true)
+    }
+
     return (
-        <div className="bg-gray-200 self-start flex items-center py-1 px-3 rounded-lg gap-2 relative">
+        <div className="bg-gray-200 self-start flex items-center py-1 px-3 rounded-lg gap-2 relative" ref={ref}>
             <SearchIcon className='w-4 h-4 text-gray-500' />
-            <input type="text" id="search" autoComplete='off' onFocus={() => setIsVisible(true)}
+            <input type="text" id="search" autoComplete='off' onFocus={handleFocus}
                 value={searchQuery}
                 onChange={handleSearch}
                 className="border-none border bg-transparent" placeholder='Поиск' />
 
-            {isVisible && <ul ref={ref}
+            {isVisible && <ul
                 className="absolute top-10 right-0 whiteBlock w-full flex flex-col">
                 {data && data.length > 1
                     ? data.map(i => <MiniUser key={i._id} user={i} />)

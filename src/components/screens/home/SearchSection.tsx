@@ -4,7 +4,6 @@ import { useQuery } from 'react-query';
 import { SearchIcon } from '../../../../public/icons';
 import { PostsService } from '../../../API/posts.service';
 import { IPost } from '../../../types/post.types';
-import Post from '../../Post/Post';
 import Posts from '../../Post/Posts';
 
 

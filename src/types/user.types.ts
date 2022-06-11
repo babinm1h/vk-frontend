@@ -4,13 +4,13 @@ import { IPost } from "./post.types"
 export interface IUser {
     email: string
     name: string
-    city: string
+    country?: string
     isVerified: boolean
     avatar: string
     followers: IUser[]
     follows: IUser[]
-    gender: "male" | 'female'
-    birthDate: string
+    gender?: string
+    birthDate?: string
     password: string
     posts: IPost[]
     likes: string[]

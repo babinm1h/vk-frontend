@@ -54,7 +54,7 @@ const RegisterForm = () => {
             {regError && <div className='text-red-600 mb-2'>{regError}</div>}
 
             <div className="flex items-center gap-5">
-                <button className="blueBtn">Зарегестрироваться</button>
+                <button className="blueBtn" disabled={isLoading}>Зарегестрироваться</button>
                 <div className="flex gap-2">Есть аккаунт?
                     <Link href="/auth/login">
                         <span className="text-primaryBlue cursor-pointer">Войти</span>

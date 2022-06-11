@@ -10,6 +10,7 @@ import { PostsService } from '../../../API/posts.service';
 import { IPost } from '../../../types/post.types';
 import SearchSection from './SearchSection';
 import Posts from '../../Post/Posts';
+import Loader from '../../Loader';
 
 
 const Home = () => {
@@ -23,7 +24,7 @@ const Home = () => {
     )
 
     if (isLoading) {
-        return <div>loading</div>
+        return <div className="w-full h-full text-center mt-10"><Loader /></div>
     }
 
     return (
