@@ -50,7 +50,8 @@ const AddPost: FC<IAddPostProps> = ({ refetch }) => {
             <form action="" className="" onSubmit={handleSubmit(onSubmit)}>
                 <div className="flex items-center gap-3 border-b border-gray-300 mb-5">
                     <div className="relative h-10 w-10 flex-shrink-0">
-                        <Image src={user?.avatar} alt='user' layout='fill' className='rounded-[50%] ' />
+                        <Image src={user?.avatar} alt='user' layout='fill' className='rounded-[50%]'
+                            objectFit='cover' />
                     </div>
                     <input type="text" className={`w-full h-20 text-[16px] ${error || errors.text && 'placeholder:text-red-600'}`}
                         {...register('text', validate(1, 500))}

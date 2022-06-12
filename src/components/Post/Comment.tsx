@@ -30,6 +30,7 @@ const Comment: FC<ICommentProps> = ({ item, user, postId, refetchComments }) => 
         mutate()
     }
 
+
     return (
         <div className="">
             <div className="flex gap-3">
@@ -45,7 +46,7 @@ const Comment: FC<ICommentProps> = ({ item, user, postId, refetchComments }) => 
                         </a>
                     </Link>
                     <p className="">{item.text}</p>
-                    <span className="text-gray-400">{getCreationDate(item.createdAt)}</span>
+                    <span className="text-gray-500 text-[13px]">{getCreationDate(item.createdAt)}</span>
                 </div>
 
                 {user && user._id === item.user._id &&

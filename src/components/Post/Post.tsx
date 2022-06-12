@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import React, { FC } from 'react';
+import { useRouter } from 'next/router';
+import React, { FC, useRef } from 'react';
 import { useQuery } from 'react-query';
 import { getCreationDate } from '../../../utils/time';
 import { CommentsService } from '../../API/comments.service';
@@ -20,6 +21,7 @@ interface IPostProps {
 
 const Post: FC<IPostProps> = ({ item, refetchPosts }) => {
     const { user } = useAuth()
+    const { push } = useRouter()
 
     const { refetch: refetchComments, isLoading, data } = useQuery(['fetch first comments', item._id],
         async () => await CommentsService.getFirstByPost(item._id),
@@ -44,10 +46,14 @@ const Post: FC<IPostProps> = ({ item, refetchPosts }) => {
         refetchAllComments()
     }
 
+    const goToProfile = () => {
+        push(`/profile/${item.user._id}`)
+    }
+
     return (
         <div className="whiteBlock border">
             <div className="flex px-5 py-3 gap-3 items-center">
-                <div className="w-14 h-14 relative flex-shrink-0">
+                <div className="w-14 h-14 relative flex-shrink-0 cursor-pointer" onClick={goToProfile}>
                     <Image src={item.user.avatar} alt="author" layout='fill' objectFit='cover'
                         className='rounded-[50%]' />
                 </div>
@@ -57,14 +63,14 @@ const Post: FC<IPostProps> = ({ item, refetchPosts }) => {
                             {item.user.name}
                         </a>
                     </Link>
-                    <span className="text-gray-400">{getCreationDate(item.createdAt)}</span>
+                    <span className="text-gray-500">{getCreationDate(item.createdAt)}</span>
                 </div>
                 {item.user._id === user?._id && <PostDots postId={item._id} refetchPosts={refetchPosts} />}
             </div>
 
             <div className="py-2 px-5">
                 <p className="">{item.text}</p>
-                {item.image && <div className="relative w-full h-[350px]">
+                {item.image && <div className="relative w-full h-[350px] mt-2">
                     <Image src={item.image} layout="fill" objectFit="contain" alt='pic' />
                 </div>}
             </div>

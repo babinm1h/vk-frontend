@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 import React, { FC, MutableRefObject, useEffect, useRef } from 'react';
 import { LogoutIcon } from '../../../../../public/icons';
 import { IUser } from '../../../../types/user.types';
@@ -6,16 +7,21 @@ import { IUser } from '../../../../types/user.types';
 
 interface IUserDropdownProps {
     user: IUser
-    dropRef: MutableRefObject<any>
     handleLogout: () => void
 }
 
-const UserDropdown: FC<IUserDropdownProps> = ({ user, dropRef, handleLogout }) => {
+const UserDropdown: FC<IUserDropdownProps> = ({ user, handleLogout }) => {
+    const { push } = useRouter()
+
+    const goToProfile = () => {
+        push(`/profile/${user._id}`)
+    }
 
     return (
         <div className="bg-white absolute top-[48px] border border-gray-200 right-0 z-[2] rounded-b-lg
         shadow-bigShadow">
-            <div className="bg-gray-100 p-3 roudned-lg flex gap-3 items-center m-3 rounded-lg">
+            <div className="bg-gray-100 p-3 roudned-lg flex gap-3 items-center m-3 rounded-lg cursor-pointer"
+                onClick={goToProfile}>
                 <div className="w-12 h-12 relative">
                     <Image src={user.avatar} alt='user' layout='fill' objectFit='cover'
                         className='rounded-[50%]' />

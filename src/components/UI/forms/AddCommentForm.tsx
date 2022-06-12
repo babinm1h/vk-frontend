@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, RefObject } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useMutation, useQuery } from 'react-query';
 import { SendIcon } from '../../../../public/icons';
@@ -8,7 +8,6 @@ import { CommentsService } from '../../../API/comments.service';
 interface IForm {
     text: string
 }
-
 
 interface IAddCommentFormProps {
     refetchAllComments: Function
@@ -39,8 +38,8 @@ const AddCommentForm: FC<IAddCommentFormProps> = ({ postId, refetchAllComments }
     return (
         <div className="py-3 px-5">
             <form action="" className="gap-3 flex items-center" onSubmit={handleSubmit(onSubmit)}>
-                <input type="text" className="border border-gray-300 rounded-lg px-3 py-2 w-full"
-                    placeholder='Написать комментарий...' {...register('text', validate(1, 400))}
+                <input type="text" className="border border-gray-300 rounded-lg px-3 py-2 w-full focus:border-gray-400" {...register("text", validate(1, 400))}
+                    placeholder='Написать комментарий...'
                     autoComplete="off" />
 
                 <button type="submit" className='disabled:text-gray-200 text-gray-400 rotate-90'

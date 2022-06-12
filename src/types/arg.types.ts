@@ -19,3 +19,10 @@ export interface IEditUserArgs {
     birthDate: string
     gender: string
 }
+
+
+export interface ISendMessageArgs {
+    text: string,
+    senderId: string,
+    dialogId: string
+}

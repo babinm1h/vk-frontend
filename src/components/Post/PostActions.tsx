@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, RefObject, useState } from 'react';
 import { useMutation, useQuery } from 'react-query';
 import { ChatIcon, HearthFilled, HeartIcon } from '../../../public/icons';
 import { PostsService } from '../../API/posts.service';
@@ -18,7 +18,6 @@ const PostActions: FC<IPostActionsProps> = ({ postId, likes, likesCount, comment
     const [likesCnt, setLikeCnt] = useState(likesCount)
 
 
-
     const { mutate: mutateLike, isLoading } = useMutation(['toggle like', postId],
         async () => await PostsService.like(postId),
         {
@@ -34,10 +33,10 @@ const PostActions: FC<IPostActionsProps> = ({ postId, likes, likesCount, comment
         }
     )
 
-
     const onToggleLike = () => {
         mutateLike()
     }
+
 
     return (
         <div className="flex items-center gap-5 mt-3 border-b border-gray-300 px-5 py-3">

@@ -34,9 +34,8 @@ const SearchBlock = () => {
                 onChange={handleSearch}
                 className="border-none border bg-transparent" placeholder='Поиск' />
 
-            {isVisible && <ul
-                className="absolute top-10 right-0 whiteBlock w-full flex flex-col">
-                {data && data.length > 1
+            {isVisible && <ul className="absolute top-10 right-0 whiteBlock w-full flex flex-col shadow-blackSm">
+                {data && data.length > 0
                     ? data.map(i => <MiniUser key={i._id} user={i} />)
                     : <div className='text-center text-gray-400 shadow-bigShadow py-5'>
                         Пользователи не найдены

@@ -20,7 +20,8 @@
     "react-dom": "18.1.0",
     "react-hook-form": "^7.31.3",
     "react-query": "^3.39.1",
-    "react-select-country-list": "^2.2.3"
+    "react-select-country-list": "^2.2.3",
+    "socket.io-client": "^4.5.1"
   },
   "devDependencies": {
     "@types/node": "17.0.36",

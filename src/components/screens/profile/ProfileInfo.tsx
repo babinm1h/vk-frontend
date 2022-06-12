@@ -15,6 +15,9 @@ const ProfileInfo: FC<IProfileInfoProps> = ({ profile }) => {
             </div>
 
             <div className="border-b py-5 border-gray-300 flex flex-col gap-3">
+                {!profile.country && !profile.gender && !profile.birthDate &&
+                    <div className='text-gray-400'>Нет информации</div>}
+
                 {profile.country && <div className="flex items-center">
                     <span className="text-gray-500 w-32 font-semibold">Страна:</span>
                     <span className="text-primaryBlue">{profile.country}</span>

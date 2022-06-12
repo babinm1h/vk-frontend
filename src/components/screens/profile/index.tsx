@@ -19,25 +19,10 @@ const Profile = () => {
     const { user } = useAuth()
     const { query, push } = useRouter()
 
-    const { IsPostsLoading, data, refetch, userPosts, isLoading, refetchPosts } = useProfile(query.id as string)
+    const { IsPostsLoading, data, refetch,
+        userPosts, isLoading, refetchPosts,
+        dialogMutate, followMutate, isFollowing } = useProfile(query.id as string)
 
-    const { mutate: followMutate, isLoading: isFollowing } = useMutation(['follow', query.id],
-        async () => await UsersService.toggleFollow(query.id as string),
-        {
-            onSuccess() {
-                refetch()
-            }
-        }
-    )
-
-    const { mutate: dialogMutate, } = useMutation(['create dialog', query.id],
-        async () => await DialogsService.create(query.id as string),
-        {
-            onSuccess: (data) => {
-                push(`/dialogs/${data._id}`)
-            }
-        }
-    )
 
     const onToggleFollow = () => {
         followMutate()
@@ -60,8 +45,8 @@ const Profile = () => {
                 <div className="flex flex-col gap-5">
                     <div className="whiteBlock p-5 self-start">
                         {data && <div className="relative w-[200px] h-[200px]">
-                            <Image src={data?.avatar} alt={data?.name} layout='responsive'
-                                height={200} width={200} quality={90} className='rounded-md' priority />
+                            <Image src={data?.avatar} alt={data?.name} layout='fill'
+                                className='rounded-md' priority objectFit='cover' />
                         </div>}
 
                         <div className="mt-5 w-full flex flex-col">
