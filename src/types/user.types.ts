@@ -15,5 +15,6 @@ export interface IUser {
     posts: IPost[]
     likes: string[]
     _id: string
+    status?: string
 }
 

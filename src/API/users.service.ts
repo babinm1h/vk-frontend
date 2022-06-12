@@ -14,6 +14,14 @@ export class UsersService {
         }
     }
 
+    static async changeStatus(status: string) {
+        try {
+            const { data } = await $authInstance.post(`/user/change/status`, { status })
+            return data
+        } catch (err: any) {
+            throw Error(err.response?.data?.message)
+        }
+    }
 
     static async getProfile(userId: string): Promise<IUser> {
         try {

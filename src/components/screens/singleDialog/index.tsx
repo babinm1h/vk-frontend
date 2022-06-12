@@ -15,26 +15,16 @@ const SingleDialog = () => {
     const { query, push } = useRouter()
     const { user } = useAuth()
 
-    // const { isLoading, data, refetch } = useQuery(['fetch dialog', query.id],
-    //     async () => await DialogsService.getOne(query.id as string),
-    //     {
-    //         enabled: !!query.id,
-    //         select: data => data,
-    //         retry: false
-    //     }
-    // )
-
-
     const handleGoBack = () => {
         push('/dialogs')
     }
 
-    const { dialog, sendMessage, online } = useChat(query.id as string)
+    const { dialog, sendMessage, online, deleteMessage } = useChat(query.id as string)
 
     const userTo = dialog && dialog.users.filter(u => u._id !== user?._id)[0]
 
-
     if (!user) return <></>
+
 
     return (
         <MainLayout>
@@ -60,7 +50,8 @@ const SingleDialog = () => {
                         </div>}
 
                         <ul className="flex-grow h-full flex-auto overflow-y-scroll p-5 gap-5 flex flex-col ">
-                            {dialog && dialog.messages.map(m => <Message item={m} key={m._id} />)}
+                            {dialog && dialog.messages.map(m => <Message item={m} key={m._id}
+                                deleteMessage={deleteMessage} authId={user._id} />)}
                         </ul>
                         <DialogForm dialogId={query.id as string} sendMessage={sendMessage}
                             userId={user._id} />

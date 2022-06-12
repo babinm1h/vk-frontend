@@ -23,7 +23,6 @@ const Profile = () => {
         userPosts, isLoading, refetchPosts,
         dialogMutate, followMutate, isFollowing } = useProfile(query.id as string)
 
-
     const onToggleFollow = () => {
         followMutate()
     }
@@ -79,7 +78,7 @@ const Profile = () => {
 
 
                 <div className="flex flex-col gap-5 w-full self-start">
-                    {data && <ProfileInfo profile={data} />}
+                    {data && <ProfileInfo profile={data} refetch={refetch} />}
 
                     {user && user._id === query.id && <AddPost refetch={refetchPosts} />}
 

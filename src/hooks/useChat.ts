@@ -54,7 +54,7 @@ export const useChat = (dialogId: string) => {
         })
 
         return () => {
-            socket.on("connect", () => {
+            socket.on("disconnect", () => {
                 socket.emit("room:leave", { dialogId })
             })
             socket.disconnect()
@@ -67,6 +67,9 @@ export const useChat = (dialogId: string) => {
         socket?.emit("message:send", args)
     }
 
+    const deleteMessage = (messageId: string) => {
+        socket?.emit("message:delete", { messageId, dialogId })
+    }
 
-    return { sendMessage, dialog, online }
+    return { sendMessage, dialog, online, deleteMessage }
 }

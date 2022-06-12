@@ -1,17 +1,33 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import { formatDate } from '../../../../utils/time';
+import { useOutsideClick } from '../../../hooks/useOutsideClick';
 import { IUser } from '../../../types/user.types';
+import ProfileStatusModal from './ProfileStatusModal';
 
 interface IProfileInfoProps {
     profile: IUser
+    refetch: Function
 }
 
-const ProfileInfo: FC<IProfileInfoProps> = ({ profile }) => {
+const ProfileInfo: FC<IProfileInfoProps> = ({ profile, refetch }) => {
+    const { isVisible, ref, setIsVisible } = useOutsideClick(false)
+
+    const onStatusClick = () => {
+        setIsVisible(true)
+    }
+
     return (
         <div className="whiteBlock p-5 flex-grow self-start w-full">
-            <div className="border-b border-gray-300 pb-3">
+            <div className="border-b border-gray-300 pb-3 relative" ref={ref}>
                 <h1 className="font-semibold text-xl mb-1">{profile.name}</h1>
-                <button className="text-gray-400 bg-transparent">Установить статус</button>
+                {profile.status && profile.status.length > 0
+                    ? <span className="" onClick={onStatusClick}>{profile.status}</span>
+                    : <button className="text-gray-400 bg-transparent" onClick={onStatusClick}>
+                        Установить статус
+                    </button>}
+
+                {isVisible && <ProfileStatusModal refetchProfile={refetch}
+                    setIsVisible={setIsVisible} defaultValue={profile.status} />}
             </div>
 
             <div className="border-b py-5 border-gray-300 flex flex-col gap-3">
