@@ -17,7 +17,7 @@ const Dialogs = () => {
     )
 
     return (
-        <MainLayout>
+        <MainLayout title="Диалоги">
 
             <section className="whiteBlock h-full w-full">
                 {isLoading

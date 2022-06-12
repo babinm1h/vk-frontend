@@ -34,7 +34,7 @@ const SearchSection = () => {
 
     return (
         <>
-            <div className="whiteBlock py-3 px-5 ">
+            <div className="whiteBlock py-3 px-5">
                 <form action="" className="flex items-center gap-3" onSubmit={handleSearch}>
                     <button type="submit" disabled={isLoading || !searchQuery.length}>
                         <SearchIcon className='w-5 h-5 text-gray-400' />

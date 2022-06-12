@@ -38,12 +38,12 @@ const Profile = () => {
     }
 
     return (
-        <MainLayout>
-            <section className="flex gap-5 w-full">
+        <MainLayout title={data?.name || "Профиль"}>
+            <section className="sm:flex gap-5 w-full">
 
                 <div className="flex flex-col gap-5">
-                    <div className="whiteBlock p-5 self-start">
-                        {data && <div className="relative w-[200px] h-[200px]">
+                    <div className="whiteBlock p-5 self-start w-full">
+                        {data && <div className="relative lg:w-[200px] lg:h-[200px] h-[100px] w-[100px] mx-auto">
                             <Image src={data?.avatar} alt={data?.name} layout='fill'
                                 className='rounded-md' priority objectFit='cover' />
                         </div>}

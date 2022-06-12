@@ -31,7 +31,7 @@ const Header = () => {
     return (
         <header className="w-full fixed top-0 left-0 right-0 z-[3] bg-white shadow">
             <div className="flex items-center gap-7 px-4 py-2">
-                <div className="w-40 h-10 relative cursor-pointer" onClick={onLogoClick}>
+                <div className="w-40 h-10 relative cursor-pointer sm:block hidden" onClick={onLogoClick}>
                     <Image alt='logo' layout='fill' objectFit='cover' src={logo} priority />
                 </div>
 
@@ -51,7 +51,7 @@ const Header = () => {
                             </div>
 
                             {isVisible &&
-                                <UserDropdown user={user} dropRef={ref} handleLogout={handleLogout} />}
+                                <UserDropdown user={user} handleLogout={handleLogout} />}
                         </div>
 
                     </div>

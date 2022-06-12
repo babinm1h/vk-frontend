@@ -12,6 +12,9 @@ module.exports = {
       boxShadow: {
         'blackSm': '0 1px 3px 0px rgba(0, 0, 0, 0.4)',
         'bigShadow': '0 3px 8px 0px rgba(0, 0, 0, 0.2)',
+      },
+      screens: {
+        "xs": "480px"
       }
     },
   },

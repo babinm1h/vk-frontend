@@ -53,7 +53,8 @@ const Post: FC<IPostProps> = ({ item, refetchPosts }) => {
     return (
         <div className="whiteBlock border">
             <div className="flex px-5 py-3 gap-3 items-center">
-                <div className="w-14 h-14 relative flex-shrink-0 cursor-pointer" onClick={goToProfile}>
+                <div className="md:w-14 md:h-14 relative flex-shrink-0 cursor-pointer h-10 w-10"
+                    onClick={goToProfile}>
                     <Image src={item.user.avatar} alt="author" layout='fill' objectFit='cover'
                         className='rounded-[50%]' />
                 </div>
@@ -70,9 +71,7 @@ const Post: FC<IPostProps> = ({ item, refetchPosts }) => {
 
             <div className="py-2 px-5">
                 <p className="">{item.text}</p>
-                {item.image && <div className="relative w-full h-[350px] mt-2">
-                    <Image src={item.image} layout="fill" objectFit="contain" alt='pic' />
-                </div>}
+                {item.image && <img src={item.image} alt="post image" className="w-full h-auto mt-2 object-cover" />}
             </div>
 
             <PostActions postId={item._id} likes={item.likes} likesCount={item.likesCount}

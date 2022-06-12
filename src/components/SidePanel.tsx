@@ -15,7 +15,7 @@ interface ISidePanelProps {
 const SidePanel: FC<ISidePanelProps> = ({ activeSection, setSection }) => {
 
     return (
-        <div className="whiteBlock self-start sticky">
+        <div className="whiteBlock self-start sticky hidden lg:block">
             <ul className="flex flex-col">
                 {sections.map(t => <li key={t.id} onClick={() => setSection(t.id)}
                     className={`border-l-[3px] ${activeSection === t.id && 'border-primaryBlue font-bold '} hover:bg-gray-200 transition-colors p-2 cursor-pointer`}>

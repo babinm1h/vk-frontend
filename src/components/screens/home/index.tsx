@@ -28,9 +28,9 @@ const Home = () => {
     }
 
     return (
-        <MainLayout>
-            <div className="grid grid-cols-3 w-full">
-                <div className="col-span-2 mx-5 flex flex-col gap-5">
+        <MainLayout title="Новости">
+            <div className="grid lg:grid-cols-3 w-full">
+                <div className="col-span-2 sm:mx-5 flex flex-col gap-5">
                     {section === 1 ? <>
                         <AddPost refetch={refetch} />
                         {data && <Posts data={data} refetch={refetch} />}

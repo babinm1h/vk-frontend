@@ -41,7 +41,6 @@ const EditProfileForm = () => {
     const { preview, img, resetFiles, handleImg } = useUploadImage()
 
     const onSubmit: SubmitHandler<IForm> = ({ name, country, gender }) => {
-
         const fd = new FormData()
         if (img) fd.append('avatar', img)
         if (startDate) fd.append('birthDate', String(startDate))
@@ -50,7 +49,6 @@ const EditProfileForm = () => {
         fd.append('country', country)
         mutate(fd)
     }
-
 
     if (!user) return <></>
 

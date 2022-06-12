@@ -11,7 +11,7 @@ const Sidebar = () => {
     const { user } = useAuth()
 
     return (
-        <div className="w-48">
+        <div className="w-48 md:block hidden">
             {user
                 ? <NavLinks userId={user._id} />
 

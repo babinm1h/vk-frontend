@@ -27,7 +27,7 @@ const SingleDialog = () => {
 
 
     return (
-        <MainLayout>
+        <MainLayout title="Сообщения">
             <section className='whiteBlock w-full h-full ml-5 overflow-hidden'>
                 {!dialog
                     ? <Loader />

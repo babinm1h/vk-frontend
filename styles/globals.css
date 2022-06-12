@@ -128,6 +128,6 @@ body{
 }
 
 .editLabel{
-  @apply text-gray-600 whitespace-nowrap w-[150px] flex justify-end
+  @apply text-gray-600 whitespace-nowrap w-[150px] flex justify-end text-[12px] xs:text-sm
 }
 }
