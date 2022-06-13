@@ -5,7 +5,7 @@ import React, { FC } from 'react';
 
 const NavLinks: FC<{ userId: string }> = ({ userId }) => {
     return (
-        <nav className="flex flex-col">
+        <nav className="flex md:flex-col items-center md:items-start">
             <Link href="/" >
                 <a className="navItem">
                     <NewspaperIcon className='navIcon' />

@@ -7,13 +7,14 @@ import ProfileStatusModal from './ProfileStatusModal';
 interface IProfileInfoProps {
     profile: IUser
     refetch: Function
+    user: IUser | null
 }
 
-const ProfileInfo: FC<IProfileInfoProps> = ({ profile, refetch }) => {
+const ProfileInfo: FC<IProfileInfoProps> = ({ profile, refetch, user }) => {
     const { isVisible, ref, setIsVisible } = useOutsideClick(false)
 
     const onStatusClick = () => {
-        setIsVisible(true)
+        if (user && user._id === profile._id) setIsVisible(true);
     }
 
     return (
@@ -21,10 +22,11 @@ const ProfileInfo: FC<IProfileInfoProps> = ({ profile, refetch }) => {
             <div className="border-b border-gray-300 pb-3 relative" ref={ref}>
                 <h1 className="font-semibold text-xl mb-1">{profile.name}</h1>
                 {profile.status && profile.status.length > 0
-                    ? <span className="" onClick={onStatusClick}>{profile.status}</span>
-                    : <button className="text-gray-400 bg-transparent" onClick={onStatusClick}>
-                        Установить статус
-                    </button>}
+                    ? <span onClick={onStatusClick}>{profile.status}</span>
+                    : user && user._id === profile._id
+                        ? <button className="text-gray-400 bg-transparent" onClick={onStatusClick}>
+                            Установить статус
+                        </button> : <></>}
 
                 {isVisible && <ProfileStatusModal refetchProfile={refetch}
                     setIsVisible={setIsVisible} defaultValue={profile.status} />}

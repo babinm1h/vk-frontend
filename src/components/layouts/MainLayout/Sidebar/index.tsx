@@ -1,14 +1,15 @@
 import Link from 'next/link';
-import React from 'react';
+import React, { FC } from 'react';
 import { NewspaperIcon, } from '../../../../../public/icons';
-import { useAuth } from '../../../../hooks/useAuth';
+import { IUser } from '../../../../types/user.types';
 import NavLinks from './NavLinks';
 
 
+interface ISidebarProps {
+    user: IUser | null
+}
 
-
-const Sidebar = () => {
-    const { user } = useAuth()
+const Sidebar: FC<ISidebarProps> = ({ user }) => {
 
     return (
         <div className="w-48 md:block hidden">

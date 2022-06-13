@@ -32,7 +32,8 @@ const UserDropdown: FC<IUserDropdownProps> = ({ user, handleLogout }) => {
             </div>
 
             <ul className="flex flex-col">
-                <li className="navItem" onClick={handleLogout}>
+                <li className="flex items-center p-2 gap-2 hover:bg-gray-200 transition-colors"
+                    onClick={handleLogout}>
                     <LogoutIcon className='navIcon' />
                     Выйти
                 </li>

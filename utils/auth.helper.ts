@@ -8,3 +8,8 @@ export const removeTokenCookie = () => {
     Cookies.remove('vkToken')
 }
 
+
+
+export const getTokenCookie = () => {
+    return Cookies.get("vkToken")
+}

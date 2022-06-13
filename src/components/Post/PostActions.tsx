@@ -1,4 +1,4 @@
-import React, { FC, RefObject, useState } from 'react';
+import React, { FC, RefObject, useEffect, useState } from 'react';
 import { useMutation, useQuery } from 'react-query';
 import { ChatIcon, HearthFilled, HeartIcon } from '../../../public/icons';
 import { PostsService } from '../../API/posts.service';
@@ -32,6 +32,10 @@ const PostActions: FC<IPostActionsProps> = ({ postId, likes, likesCount, comment
 
         }
     )
+
+    useEffect(() => {
+        if (!user) setIsLiked(false)
+    }, [user])
 
     const onToggleLike = () => {
         mutateLike()

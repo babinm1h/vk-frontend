@@ -2,6 +2,14 @@ import { $authInstance, $instance } from "."
 import { IPost } from "../types/post.types"
 
 
+interface IGetAllPostsResponse {
+    posts: IPost[]
+    totalCount: number
+    hasMore: boolean
+    page: number
+}
+
+
 export class PostsService {
 
     static async create(formData: FormData) {
@@ -34,9 +42,9 @@ export class PostsService {
     }
 
 
-    static async getAll() {
+    static async getAll(page = 1): Promise<IGetAllPostsResponse> {
         try {
-            const { data } = await $instance.get("/posts")
+            const { data } = await $instance.get("/posts", { params: { page } })
             return data
         } catch (err: any) {
             throw Error(err.response?.data?.message)
