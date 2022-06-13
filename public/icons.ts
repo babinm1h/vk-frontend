@@ -1,6 +1,6 @@
 import {
     SearchIcon, UserCircleIcon, ChatIcon, UserGroupIcon, NewspaperIcon, CameraIcon,
-    ChevronDownIcon, LogoutIcon, HeartIcon, UploadIcon
+    ChevronDownIcon, LogoutIcon, HeartIcon, UploadIcon, UsersIcon
 } from "@heroicons/react/outline"
 
 import { HeartIcon as HearthFilled, PaperAirplaneIcon as SendIcon, XIcon, DotsHorizontalIcon as DotsHorizontal, ChevronLeftIcon, TrashIcon, PencilIcon } from "@heroicons/react/solid"
@@ -22,5 +22,6 @@ export {
     UploadIcon,
     ChevronLeftIcon,
     TrashIcon,
-    PencilIcon
+    PencilIcon,
+    UsersIcon
 }

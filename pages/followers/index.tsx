@@ -1,13 +1,13 @@
 import { GetServerSideProps, NextPage } from 'next';
 import React from 'react';
-import EditProfile from '../../src/components/screens/profile/edit';
+import Followers from '../../src/components/screens/followers';
+import { getTokenCookie } from '../../utils/auth.helper';
 
-const edit: NextPage = () => {
-    return <EditProfile />
+const followers: NextPage = () => {
+    return <Followers />
 };
 
-export default edit;
-
+export default followers;
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
     const isAuth = ctx.req.cookies['vkToken']

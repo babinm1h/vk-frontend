@@ -11,7 +11,7 @@ import SearchBlock from './SearchBlock';
 import UserDropdown from './UserDropdown';
 
 const Header = () => {
-    const router = useRouter()
+    const { push } = useRouter()
     const { user, logout } = useAuth()
     const { isVisible, ref, setIsVisible } = useOutsideClick(false)
 
@@ -20,12 +20,13 @@ const Header = () => {
     }
 
     const onLogoClick = () => {
-        router.push("/")
+        push("/")
     }
 
     const handleLogout = () => {
         removeTokenCookie()
         logout()
+        push('/')
     }
 
     return (

@@ -1,6 +1,7 @@
-import { NewspaperIcon, UserCircleIcon, ChatIcon } from '../../../../../public/icons';
+import { NewspaperIcon, UserCircleIcon, ChatIcon, UsersIcon } from '../../../../../public/icons';
 import Link from 'next/link';
 import React, { FC } from 'react';
+
 
 
 const NavLinks: FC<{ userId: string }> = ({ userId }) => {
@@ -22,6 +23,12 @@ const NavLinks: FC<{ userId: string }> = ({ userId }) => {
                 <a className="navItem">
                     <ChatIcon className='navIcon' />
                     <span className="">Сообщения</span>
+                </a>
+            </Link>
+            <Link href="/followers" >
+                <a className="navItem">
+                    <UsersIcon className='navIcon' />
+                    <span className="">Подписчики</span>
                 </a>
             </Link>
         </nav>

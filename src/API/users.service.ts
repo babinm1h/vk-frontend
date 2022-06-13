@@ -51,4 +51,23 @@ export class UsersService {
             throw Error(err.response?.data?.message)
         }
     }
+
+    static async getFollowers(): Promise<IUser[]> {
+        try {
+            const { data } = await $authInstance.get(`/user/my/followers`)
+            return data
+        } catch (err: any) {
+            throw Error(err.response?.data?.message)
+        }
+    }
+
+
+    static async searchFollowers(searchQuery: string): Promise<IUser[]> {
+        try {
+            const { data } = await $authInstance.get(`/user/my/followers/search`, { params: { searchQuery } })
+            return data
+        } catch (err: any) {
+            throw Error(err.response?.data?.message)
+        }
+    }
 }   

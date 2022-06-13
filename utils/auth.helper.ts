@@ -9,7 +9,6 @@ export const removeTokenCookie = () => {
 }
 
 
-
 export const getTokenCookie = () => {
     return Cookies.get("vkToken")
 }
