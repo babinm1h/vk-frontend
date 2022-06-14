@@ -3,11 +3,11 @@ import React from 'react';
 import SingleDialog from '../../src/components/screens/singleDialog';
 import { getTokenCookie } from '../../utils/auth.helper';
 
-const dialog: NextPage = () => {
+const DialogPage: NextPage = () => {
     return <SingleDialog />
 };
 
-export default dialog;
+export default DialogPage;
 
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
