@@ -100,7 +100,7 @@ body{
   }
 
   .navItem{
-    @apply flex items-center gap-2 hover:bg-gray-200 cursor-pointer transition-colors md:p-2 rounded-md whitespace-nowrap flex-col md:flex-row px-4 py-2 text-xs sm:text-sm
+    @apply flex items-center gap-2 hover:bg-gray-200 cursor-pointer transition-colors md:p-2 rounded-md whitespace-nowrap flex-col md:flex-row xs:px-4 py-2 text-xs sm:text-sm px-2 
   }
   
 .whiteBlock{

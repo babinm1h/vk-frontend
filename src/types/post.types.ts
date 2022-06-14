@@ -4,7 +4,7 @@ import { IUser } from "./user.types"
 
 export interface IPost {
     text: string
-    image: string
+    image?: string
     user: IUser
     likes: string[]
     likesCount: number

@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
-import { useQuery } from 'react-query';
-import { UsersService } from '../../../API/users.service';
 import { useFollowersPage } from '../../../hooks/useFollowersPage';
-import { IUser } from '../../../types/user.types';
 import MainLayout from '../../layouts/MainLayout/MainLayout';
 import Loader from '../../Loader';
 import SearchFollowersForm from '../../UI/forms/SearchFollowersForm';
 import FollowedUser from './FollowedUser';
+
 
 const Followers = () => {
 

@@ -74,7 +74,8 @@ const authReducer = (state: IState, action: ActionTypes): IState => {
             return {
                 ...state,
                 user: action.payload,
-                isInitializing: false
+                isInitializing: false,
+                isSubmitting: false
             }
         }
 
@@ -89,7 +90,8 @@ const authReducer = (state: IState, action: ActionTypes): IState => {
         case AllActions.GETAUTH_ERROR: {
             return {
                 ...state,
-                isInitializing: false
+                isInitializing: false,
+                isSubmitting: false
             }
         }
 
@@ -130,18 +132,22 @@ export const AuthProvider: FC<PropsWithChildren<unknown>> = ({ children }) => {
     }
 
 
-    const { refetch } = useQuery('get auth', async () => await AuthService.getAuth(),
+    const { refetch, isLoading } = useQuery('get auth', async () => await AuthService.getAuth(),
         {
             retry: false,
 
             onSuccess: (data) => {
                 actionCreators.getAuthFullfilled(data)
+            },
+            onError: (err: any) => {
+                actionCreators.getAuthError(err)
             }
         }
     )
 
 
-    return <AuthContext.Provider value={{ ...state, ...actionCreators, refetchAuth: refetch }}>
+    return <AuthContext.Provider
+        value={{ ...state, ...actionCreators, refetchAuth: refetch, isInitializing: isLoading }}>
         {children}
     </AuthContext.Provider>
 }

@@ -1,18 +1,18 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import React, { FC, useRef } from 'react';
-import { useQuery } from 'react-query';
+import React, { FC } from 'react';
 import { getCreationDate } from '../../../utils/time';
-import { CommentsService } from '../../API/comments.service';
 import { useAuth } from '../../hooks/useAuth';
+import { useModal } from '../../hooks/useModal';
+import { usePostComments } from '../../hooks/usePostComments';
 import { IPost } from '../../types/post.types';
 import Loader from '../Loader';
 import AddCommentForm from '../UI/forms/AddCommentForm';
-import Comment from './Comment';
 import CommentsList from './CommentsList';
 import PostActions from './PostActions';
 import PostDots from './PostDots';
+import PostModal from './PostModal';
 
 interface IPostProps {
     item: IPost
@@ -22,24 +22,10 @@ interface IPostProps {
 const Post: FC<IPostProps> = ({ item, refetchPosts }) => {
     const { user } = useAuth()
     const { push } = useRouter()
+    const { isOpen, onClose, onOpen } = useModal()
 
-    const { refetch: refetchComments, isLoading, data } = useQuery(['fetch first comments', item._id],
-        async () => await CommentsService.getFirstByPost(item._id),
-        {
-            enabled: !!item._id,
-            select: data => data,
-            retry: 0
-        }
-    )
-
-    const { refetch: refetchAllComments, isLoading: isAllLoading, data: allComments } =
-        useQuery(['fetch first comments', item._id],
-            async () => await CommentsService.getAllByPost(item._id),
-            {
-                enabled: false,
-                select: data => data,
-            }
-        )
+    const { allComments, data, isAllLoading, isLoading, refetchAllComments, refetchComments }
+        = usePostComments(item._id)
 
 
     const handleShowMore = () => {
@@ -71,7 +57,7 @@ const Post: FC<IPostProps> = ({ item, refetchPosts }) => {
 
             <div className="py-2 px-5">
                 <p className="">{item.text}</p>
-                {item.image && <img src={item.image} alt="post image" className="w-full h-auto mt-2 object-cover" />}
+                {item.image && <img src={item.image} alt="post image" className="w-full h-auto mt-2 object-cover cursor-pointer" onClick={onOpen} />}
             </div>
 
             <PostActions postId={item._id} likes={item.likes} likesCount={item.likesCount}
@@ -97,6 +83,8 @@ const Post: FC<IPostProps> = ({ item, refetchPosts }) => {
                     </div>}
 
             {user && <AddCommentForm postId={item._id} refetchAllComments={refetchAllComments} />}
+
+            {isOpen && item.image && <PostModal img={item.image} onClose={onClose} />}
         </div>
     );
 };
