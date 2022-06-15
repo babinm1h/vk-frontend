@@ -40,7 +40,7 @@ export const useProfile = (userId: string) => {
         {
             onSuccess: (data) => {
                 console.log(data);
-                push(`/dialogs/${data._id}`)
+                push(`/conversations/${data._id}`)
             }
         }
     )

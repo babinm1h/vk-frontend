@@ -1,9 +1,7 @@
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import React from 'react';
-import { useQuery } from 'react-query';
 import { ChevronLeftIcon } from '../../../../public/icons';
-import { DialogsService } from '../../../API/dialogs.service';
 import { useAuth } from '../../../hooks/useAuth';
 import { useChat } from '../../../hooks/useChat';
 import MainLayout from '../../layouts/MainLayout/MainLayout';
@@ -16,7 +14,7 @@ const SingleDialog = () => {
     const { user } = useAuth()
 
     const handleGoBack = () => {
-        push('/dialogs')
+        push('/conversations')
     }
 
     const { dialog, sendMessage, online, deleteMessage } = useChat(query.id as string)
