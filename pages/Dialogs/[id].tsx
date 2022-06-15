@@ -1,13 +1,12 @@
 import { GetServerSideProps, NextPage } from 'next';
 import React from 'react';
 import SingleDialog from '../../src/components/screens/singleDialog';
-import { getTokenCookie } from '../../utils/auth.helper';
 
-const DialogPage: NextPage = () => {
+const dialogPage: NextPage = () => {
     return <SingleDialog />
 };
 
-export default DialogPage;
+export default dialogPage;
 
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {

@@ -1,7 +1,6 @@
 import { GetServerSideProps, NextPage } from 'next';
 import React from 'react';
 import Followers from '../../src/components/screens/followers';
-import { getTokenCookie } from '../../utils/auth.helper';
 
 const followers: NextPage = () => {
     return <Followers />

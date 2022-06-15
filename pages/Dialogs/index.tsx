@@ -2,12 +2,12 @@ import { GetServerSideProps, NextPage } from 'next';
 import React from 'react';
 import Dialogs from '../../src/components/screens/dialogs';
 
-const DialogsPage: NextPage = () => {
+const dialogsPage: NextPage = () => {
 
     return <Dialogs />
 };
 
-export default DialogsPage;
+export default dialogsPage;
 
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
