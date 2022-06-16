@@ -19,7 +19,7 @@ const NavLinks: FC<{ userId: string }> = ({ userId }) => {
                     <span className="">Моя страница</span>
                 </a>
             </Link>
-            <Link href="/conversations" >
+            <Link href="/dialogs" >
                 <a className="navItem">
                     <ChatIcon className='navIcon' />
                     <span className="">Сообщения</span>

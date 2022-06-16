@@ -39,7 +39,7 @@ export const useProfile = (userId: string) => {
         async () => await DialogsService.create(userId),
         {
             onSuccess: (data) => {
-                push(`/conversations/${data._id}`)
+                push(`/dialogs/${data._id}`)
             }
         }
     )

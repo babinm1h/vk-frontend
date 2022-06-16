@@ -14,7 +14,7 @@ const SingleDialog = () => {
     const { user } = useAuth()
 
     const handleGoBack = () => {
-        push('/conversations')
+        push('/dialogs')
     }
 
     const { dialog, sendMessage, online, deleteMessage } = useChat(query.id as string)
