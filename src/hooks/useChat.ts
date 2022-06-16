@@ -5,7 +5,7 @@ import { IDialog } from "../types/dialog.types"
 
 
 
-const SERVER_URL = 'http://localhost:7000'
+const SERVER_URL = 'http://localhost:8080'
 
 
 export const useChat = (dialogId: string) => {
