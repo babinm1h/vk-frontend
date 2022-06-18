@@ -1,7 +1,7 @@
 import Cookies from "js-cookie"
 
 export const setTokenCookie = (token: string) => {
-    Cookies.set('vkToken', token)
+    Cookies.set('vkToken', token, { expires: 20 })
 }
 
 export const removeTokenCookie = () => {
